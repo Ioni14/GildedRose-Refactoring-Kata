@@ -22,6 +22,8 @@ abstract class UpdatingItem
                 return new AgedBrieItem($item);
             case 'Sulfuras, Hand of Ragnaros':
                 return new LegendaryItem($item);
+            case 'Conjured Mana Cake':
+                return new ConjuredItem($item);
         }
 
         return new BasicItem($item);

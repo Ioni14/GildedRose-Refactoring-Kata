@@ -124,4 +124,24 @@ class GildedRoseTest extends TestCase
         yield [0, 0];
         yield [-1, 0];
     }
+
+    /**
+     * @test
+     * @dataProvider provider_conjured_items_should_degrade_quality_twice_as_fast_as_normal_items
+     */
+    public function conjured_items_should_degrade_quality_twice_as_fast_as_normal_items(int $sellIn, int $updatedQuality): void
+    {
+        $items = [new Item('Conjured Mana Cake', $sellIn, 10)];
+        $gildedRose = new GildedRose($items);
+        $gildedRose->updateQuality();
+        static::assertSame($updatedQuality, $items[0]->quality);
+    }
+
+    public function provider_conjured_items_should_degrade_quality_twice_as_fast_as_normal_items(): iterable
+    {
+        yield [10, 8];
+        yield [1, 8];
+        yield [0, 6];
+        yield [-1, 6];
+    }
 }

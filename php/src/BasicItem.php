@@ -17,7 +17,7 @@ class BasicItem extends UpdatingItem
         $this->ensureQualityBounds();
     }
 
-    private function calculateQualityMultiplier(): int
+    protected function calculateQualityMultiplier(): int
     {
         return $this->isSellDateHasExpired() ? 2 : 1;
     }
