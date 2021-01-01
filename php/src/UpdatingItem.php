@@ -6,6 +6,9 @@ namespace GildedRose;
 
 abstract class UpdatingItem
 {
+    protected const HIGHEST_QUALITY = 50;
+    protected const LOWEST_QUALITY = 0;
+
     protected $item;
 
     protected function __construct(Item $item)
@@ -42,7 +45,7 @@ abstract class UpdatingItem
 
     protected function ensureQualityBounds(): void
     {
-        $this->item->quality = max(0, min(50, $this->item->quality));
+        $this->item->quality = max(self::LOWEST_QUALITY, min(self::HIGHEST_QUALITY, $this->item->quality));
     }
 
     abstract protected function updateSellin(): void;
